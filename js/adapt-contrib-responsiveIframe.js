@@ -1,8 +1,8 @@
-/**
- * adapt-contrib-responsiveIframe
- * License - http://github.com/adaptlearning/adapt_framework/LICENSE
- * Maintainers - Kevin Corry <kevinc@learningpool.com>
- */
+/*
+* adapt-contrib-responsiveIframe
+* License - http://github.com/adaptlearning/adapt_framework/LICENSE
+* Maintainers - Kevin Corry <kevinc@learningpool.com>
+*/
 define(function(require) {
 
     var ComponentView = require("coreViews/componentView");
@@ -24,6 +24,7 @@ define(function(require) {
                 that.resizeControl(Adapt.device.screenSize);
                 that.setReadyStatus();
             });
+
             this.$('.responsiveIframe-iframe').load(function() {
                 that.isInteraction = this.contentWindow.ActionCompletion ? true : false;
             });
