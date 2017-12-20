@@ -25,7 +25,8 @@ define(function(require) {
                 that.setReadyStatus();
             });
 
-            this.$('.responsiveIframe-iframe').load(function() {
+            this.$('.responsiveIframe-iframe').load(function () {
+                that.resizeControl(Adapt.device.screenSize);
                 that.isInteraction = this.contentWindow.ActionCompletion ? true : false;
             });
             //listen for the ifarme actions complation.
