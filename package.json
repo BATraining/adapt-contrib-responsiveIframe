@@ -1,7 +1,7 @@
 {
   "name": "adapt-contrib-responsiveIframe",
-  "version": "0.0.1",
-  "description": "Allows embedded content inside an iframe tag that will respond to theme breakpoints.",
+  "version": "1.0.3",
+  "description": "Renders embedded content inside an IFRAME tag that will respond to theme breakpoints.",
   "main": "",
   "scripts": {
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"

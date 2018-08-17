@@ -11,11 +11,22 @@ define(function(require) {
     var ResponsiveIframe = ComponentView.extend({
 
         events: {
-            'inview': 'onInview'
+            'inview': 'inview'
         },
 
         preRender: function() {
             this.listenTo(Adapt, 'device:changed', this.resizeControl);
+
+            this.checkIfResetOnRevisit();
+        },
+
+        checkIfResetOnRevisit: function() {
+            var isResetOnRevisit = this.model.get('_isResetOnRevisit');
+
+            // If reset is enabled set defaults
+            if (isResetOnRevisit) {
+                this.model.reset(isResetOnRevisit);
+            }
         },
 
         postRender: function() {
@@ -24,40 +35,12 @@ define(function(require) {
                 that.resizeControl(Adapt.device.screenSize);
                 that.setReadyStatus();
             });
-
-            this.$('.responsiveIframe-iframe').load(function () {
-                that.resizeControl(Adapt.device.screenSize);
-                that.isInteraction = this.contentWindow.ActionCompletion ? true : false;
-            });
-            //listen for the ifarme actions complation.
-            this.$('.responsiveIframe-iframe').on('completion:status', _.bind(this.iframeEventCompletion, this));
         },
 
-        onInview: function(event, visible, visiblePartX, visiblePartY) {
-            if (!this.isInteraction) {
-                if (visible) {
-                    if (visiblePartY === 'top') {
-                        this._isVisibleTop = true;
-                    } else if (visiblePartY === 'bottom') {
-                        this._isVisibleBottom = true;
-                    } else {
-                        this._isVisibleTop = true;
-                        this._isVisibleBottom = true;
-                    }
-
-                    if (this._isVisibleTop && this._isVisibleBottom) {
-                        this.$('.component-widget').off('inview');
-                        this.setCompletionStatus();
-                    }
-                }
-            }
-        },
-
-        iframeEventCompletion: function(event, complationStatus) {
-            if (complationStatus) {
+        inview: function(event, visible) {
+            if (visible) {
                 this.setCompletionStatus();
             }
-
         },
 
         resizeControl: function(size) {
