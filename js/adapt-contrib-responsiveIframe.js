@@ -47,7 +47,10 @@ define(function(require) {
 
                     if (this._isVisibleTop && this._isVisibleBottom) {
                         this.$('.component-widget').off('inview');
-                        this.setCompletionStatus();
+
+                        if (Adapt.articles.models[0].get("_horizontalBlockSlider") == "undefined") {
+                            this.setCompletionStatus();
+                        }
                     }
                 }
             }
