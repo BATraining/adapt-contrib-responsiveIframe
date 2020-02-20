@@ -2,14 +2,21 @@
 <div class="component-inner responsiveIframe-inner">
   <div class="component-widget responsiveIframe-widget">
     <div class="responsiveIframe-iframe-holder">
-      <iframe scrolling="no" class="responsiveIframe-iframe"
+      <iframe
+        scrolling="no"
+        class="responsiveIframe-iframe"
         {{#if _lazy_loading}}
           src="about:blank"
         {{else}}
           src="{{_source}}"
         {{/if}}
-        data-height-large="{{_height._large}}" data-height-medium="{{_height._medium}}" data-height-small="{{_height._small}}"
-        data-width-large="{{_width._large}}" data-width-medium="{{_width._medium}}" data-width-small="{{_width._small}}">
+        allow="autoplay"
+        data-height-large="{{_height._large}}" 
+        data-height-medium="{{_height._medium}}" 
+        data-height-small="{{_height._small}}"
+        data-width-large="{{_width._large}}" 
+        data-width-medium="{{_width._medium}}" 
+        data-width-small="{{_width._small}}">
       </iframe>
     </div>
   </div>
